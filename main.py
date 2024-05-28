@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 
+# -------------------------------------------------------------- random bits generating
 def calculateColor(px):
     ret = px[2]
     ret = ret << 8
@@ -25,13 +26,13 @@ def calculateColorI(x,y,px):
     )/9
 
 randomBits = []
-filename = 'Kanye_West_-_Gotcha'
+filename = 'StephCurry'
 vc = cv2.VideoCapture(filename+'.mp4')
 audio = open(filename+'.wav', 'rb')
 c = 1
 # wymiary obrazu
 W = 640
-H = 356
+H = 360
 # vt i th
 img = cv2.imread("frames/90.jpg")
 vt = np.var(img)/2
@@ -44,7 +45,7 @@ if vc.isOpened():
     rval , frame = vc.read()
 else:
     rval = False
-# rozmiar 640x356       indeksowanie pikseli od 0
+# rozmiar 640x360       indeksowanie pikseli od 0
 state = 0
 audio_content = bytearray(audio.read())
 ranBitCnt=0
@@ -60,7 +61,7 @@ SN4=0
 SN5=0
 watchdog=0
 j=1
-while c<=162:
+while c<=1590:
     if(state == 0):
         img = cv2.imread("frames/"+str(c)+".jpg")
         print(c)
@@ -147,19 +148,20 @@ while c<=162:
             c += 1
             state = 0 
 # f----------------------------------------------------------------
-l = 0
-with open("RandomBits.txt", 'w') as temp1:
-    for i, bit in enumerate(randomBits):
-        temp1.write(str(bit))
-for i in randomBits:
-    print("Bit numer "+str(l)+" = "+str(i))
-    l += 1
+# l = 0
+# with open("RandomBits.txt", 'w') as temp1:
+#     for i, bit in enumerate(randomBits):
+#         temp1.write(str(bit))
+# for i in randomBits:
+#     print("Bit numer "+str(l)+" = "+str(i))
+#     l += 1
 
 audio.close()
 
+# -------------------------------------------------------------- extracting frames
 # import cv2
 
-# vc = cv2.VideoCapture('Kanye_West_-_Gotcha.mp4')
+# vc = cv2.VideoCapture('StephCurry.mp4')
 # c=1
 
 # if vc.isOpened():
