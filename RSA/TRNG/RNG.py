@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-# -------------------------------------------------------------- random bits generating
+# -------------------------------------------------------------- Random bits generating
 def calculateColor(px):
     ret = px[2]
     ret = ret << 8
@@ -122,14 +122,6 @@ while c<=1590:
         ranBit = (1 & (R^G^B^R1^G1^B1^R2^G2^B2^SN1^SN2^SN3^SN4^SN5))
         randomBits.append(ranBit)
         ranBitCnt+=1
-        # wynik = 0
-        # if(ranBitCnt%8 == 0):
-        #     for i in range (0,8):
-        #         wynik += (2**(7-i))*randomBits[i]
-        #     randomBits.clear()
-        #     ranBitCnt=0
-        #     with open("TEMP1.txt", 'w') as temp1:
-        #         temp1.write(str(wynik)+'\n')
         print(str(c))
         i+=1
         R1 = R
@@ -148,31 +140,12 @@ while c<=1590:
             c += 1
             state = 0 
 # f----------------------------------------------------------------
-# l = 0
-# with open("RandomBits.txt", 'w') as temp1:
-#     for i, bit in enumerate(randomBits):
-#         temp1.write(str(bit))
-# for i in randomBits:
-#     print("Bit numer "+str(l)+" = "+str(i))
-#     l += 1
+# l = 0 (używane do wypisywania)
+with open("RandomBits.txt", 'w') as temp1:
+    for i, bit in enumerate(randomBits):
+        temp1.write(str(bit))
+# for i in randomBits: (używane do wypisywania)
+#     print("Bit numer "+str(l)+" = "+str(i)) (używane do wypisywania)
+#     l += 1 (używane do wypisywania)
 
 audio.close()
-
-# -------------------------------------------------------------- extracting frames
-# import cv2
-
-# vc = cv2.VideoCapture('StephCurry.mp4')
-# c=1
-
-# if vc.isOpened():
-#     rval , frame = vc.read()
-# else:
-#     rval = False
-
-# while rval:
-#     rval, frame = vc.read()
-#     cv2.imwrite('frames/'+str(c) + '.jpg',frame)
-#     c = c + 1
-#     cv2.waitKey(1)
-# vc.release()
-#
