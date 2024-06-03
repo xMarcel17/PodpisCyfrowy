@@ -6,7 +6,7 @@ def load_random_bits(filepath):
         return file.read()
 
 # Wczytanie danych losowych z pliku RandomBits.txt
-random_bits = load_random_bits('RandomBits.txt')
+random_bits = load_random_bits('TRNG/RandomBits.txt')
 current_index = 0
 
 def generate_random_bytes(n):
