@@ -1,4 +1,4 @@
-##PODPIS CYFROWY
+# PODPIS CYFROWY
 ____________________________________________________________________________________________________________________________________________________
 Generator liczb losowych użyty w projekcie:
 https://github.com/xMarcel17/Random_Numbers_Generated_from_Audio_and_Video_Sources_Implementation_in_Python
