@@ -1,21 +1,28 @@
+#biblioteka tkinter oraz moduły potrzebne do stworzenia GUI, wyboru plików i wyświetlania komunikatów
 import tkinter as tk
 from tkinter import filedialog, messagebox
+
+#moduły z bilbioteki cryptodome używane w celach kryptograficznych
 from Crypto.PublicKey import RSA
 from Crypto.Hash import SHA3_256
 from Crypto.Signature import pkcs1_15
+
+#biblioteka używana do sprawdzania obecności plików, usuwania ich
 import os
+
+#pliki, w których wykonywane są poszczególne operacje 
 import RSA.GeneratingRSA
 import A.CreatingDigitalSignature
 import B.DecryptionOfDigitalSignature
 
 def generate_keys():
-    file_path_GK = filedialog.askopenfilename()
+    file_path_GK = filedialog.askopenfilename() #otwarcie okna dialogowego do wyboru pliku
     RSA.GeneratingRSA.main(file_path_GK)
-    messagebox.showinfo("Success", "Keys generated successfully! You can now use the public key.")
+    messagebox.showinfo("Success", "Keys generated successfully! You can now use the public key.")  #wyświetlanie komunikatu
 
 def create_signature():
-    if os.path.exists("RSA/RSA_keys/private_key.pem") and os.path.exists("RSA/RSA_keys/public_key.pem"):
-        file_path_CS = filedialog.askopenfilename()
+    if os.path.exists("RSA/RSA_keys/private_key.pem") and os.path.exists("RSA/RSA_keys/public_key.pem"):    #sprawdzenie czy istnieją klucze
+        file_path_CS = filedialog.askopenfilename() 
         A.CreatingDigitalSignature.main(file_path_CS)
         messagebox.showinfo("Success", f"Signature created for {file_path_CS} and saved as signature.txt")
     else:
@@ -56,7 +63,7 @@ def delete_everything():
     privateKeyCheck = False
     
     if os.path.exists("RSA/RSA_keys/private_key.pem"):
-        os.remove("RSA/RSA_keys/private_key.pem")
+        os.remove("RSA/RSA_keys/private_key.pem")   #usuwanie plików
         privateKeyCheck = True
     if os.path.exists("RSA/RSA_keys/public_key.pem"):
         os.remove("RSA/RSA_keys/public_key.pem")
@@ -74,30 +81,34 @@ def delete_everything():
     else:
         messagebox.showerror("Error", f"No things to delete.")
 
-# GUI setup
-root = tk.Tk()
-root.title("Digital Signature Tool")
-root.geometry("400x300")
-root.configure(bg="#f0f0f0")
+#GUI konfiguracja
+root = tk.Tk()  #root to główne okno aplikacji i jest tu tworzone
+root.title("Digital Signature Tool")    #tytuł okna
+root.geometry("400x300")    #rozmiary okna
+root.configure(bg="#f0f0f0")    #kolor tła okna
 
-# Title
-title_label = tk.Label(root, text="Digital Signature Tool", font=("Helvetica", 16, "bold"), bg="#f0f0f0")
-title_label.pack(pady=10)
+#etykieta tytułowa
+title_label = tk.Label(root, text="Digital Signature Tool", font=("Helvetica", 16, "bold"), bg="#f0f0f0")   #stworzenie etykiety, gdzie root to okno główne, do którego jest ona przypisana
+title_label.pack(pady=10)   #ustawienie odstępu pionowego
 
-# Frame for buttons
-frame = tk.Frame(root, bg="#f0f0f0")
-frame.pack(pady=20)
+#ramka na przyciski
+frame = tk.Frame(root, bg="#f0f0f0")    #dodanie ramki na przyciski i jest przypisana do root
+frame.pack(pady=30)
 
+#tworzenie przycisku, gdzie frame jest ramką, do której przypisany jest ten przycisk
+#po kliknięciu na przycisk wywołuję się funkcja z command
 generate_btn = tk.Button(frame, text="Generate RSA Keys", command=generate_keys, bg="#4CAF50", fg="white", font=("Helvetica", 12))
+#dodanie przycisku do ramki umieszczając go w odpowiedniej kolumnie i wierszu oraz ustawiając odpowiednie odstępy i poziom
 generate_btn.grid(row=0, column=0, padx=10, pady=5, sticky="ew")
 
 sign_btn = tk.Button(frame, text="Create Digital Signature", command=create_signature, bg="#2196F3", fg="white", font=("Helvetica", 12))
 sign_btn.grid(row=1, column=0, padx=10, pady=5, sticky="ew")
 
-verify_btn = tk.Button(frame, text="Verify Digital Signature", command=verify_signature, bg="#ffc680", fg="white", font=("Helvetica", 12))
+verify_btn = tk.Button(frame, text="Verify Digital Signature", command=verify_signature, bg="#a67b5b", fg="white", font=("Helvetica", 12))
 verify_btn.grid(row=2, column=0, padx=10, pady=5, sticky="ew")
 
 clear_btn = tk.Button(frame, text="Delete keys and signature", command=delete_everything, bg="#f44336", fg="white", font=("Helvetica", 12))
 clear_btn.grid(row=3, column=0, padx=10, pady=5, sticky="ew")
 
+#uruchomienie pętli głównej aplikacji Tkinter, która czeka na interakcję użytkownika i reaguje na nie zgodnie z funkcjami
 root.mainloop()
