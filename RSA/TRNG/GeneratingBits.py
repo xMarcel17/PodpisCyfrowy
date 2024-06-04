@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-# -------------------------------------------------------------- Random bits generating
+# -------------------------------------------------------------- Generating random bits
 def calculateColor(px):
     ret = px[2]
     ret = ret << 8

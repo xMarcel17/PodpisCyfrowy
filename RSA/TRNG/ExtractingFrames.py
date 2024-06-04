@@ -1,6 +1,6 @@
-# -------------------------------------------------------------- Extracting frames
 import cv2
 
+# -------------------------------------------------------------- Extracting frames
 vc = cv2.VideoCapture('StephCurry.mp4')
 c=1
 
