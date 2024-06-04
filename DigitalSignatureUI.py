@@ -88,7 +88,7 @@ title_label.pack(pady=10)
 frame = tk.Frame(root, bg="#f0f0f0")
 frame.pack(pady=20)
 
-generate_btn = tk.Button(frame, text="Generate Keys", command=generate_keys, bg="#4CAF50", fg="white", font=("Helvetica", 12))
+generate_btn = tk.Button(frame, text="Generate RSA Keys", command=generate_keys, bg="#4CAF50", fg="white", font=("Helvetica", 12))
 generate_btn.grid(row=0, column=0, padx=10, pady=5, sticky="ew")
 
 sign_btn = tk.Button(frame, text="Create Digital Signature", command=create_signature, bg="#2196F3", fg="white", font=("Helvetica", 12))
