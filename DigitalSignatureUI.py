@@ -27,8 +27,8 @@ def verify_signature():
         messagebox.showerror("Error", f"The file to check was not selected. Start over!")
         return
     file_path_VS_2 = filedialog.askopenfilename(title='Load the signature')
-    file_extension = file_path_VS_2[-4:]
-    if file_extension != '.txt':
+    file_extension2 = file_path_VS_2[-4:]
+    if file_extension2 != '.txt':
         if file_path_VS_2 == '':
             messagebox.showerror("Error", f"The signature was not loaded. Start over!")
             return
@@ -36,9 +36,14 @@ def verify_signature():
             messagebox.showerror("Error", f"The signature has wrong type. Start over!")
             return
     file_path_VS_3 = filedialog.askopenfilename(title='Load the public key')
-    if file_path_VS_3 == '':
-        messagebox.showerror("Error", f"The public key was not loaded. Start over!")
-        return
+    file_extension3 = file_path_VS_3[-4:]
+    if file_extension3 != '.pem':
+        if file_path_VS_3 == '':
+            messagebox.showerror("Error", f"The public key was not loaded. Start over!")
+            return
+        else: 
+            messagebox.showerror("Error", f"The public key has wrong type. Start over!")
+            return
 
     if B.DecryptionOfDigitalSignature.main(file_path_VS_1, file_path_VS_2, file_path_VS_3):
         messagebox.showinfo("Success", f"Signature for the selected file is valid.")
@@ -89,10 +94,10 @@ generate_btn.grid(row=0, column=0, padx=10, pady=5, sticky="ew")
 sign_btn = tk.Button(frame, text="Create Digital Signature", command=create_signature, bg="#2196F3", fg="white", font=("Helvetica", 12))
 sign_btn.grid(row=1, column=0, padx=10, pady=5, sticky="ew")
 
-verify_btn = tk.Button(frame, text="Verify Digital Signature", command=verify_signature, bg="#f44336", fg="white", font=("Helvetica", 12))
+verify_btn = tk.Button(frame, text="Verify Digital Signature", command=verify_signature, bg="#ffc680", fg="white", font=("Helvetica", 12))
 verify_btn.grid(row=2, column=0, padx=10, pady=5, sticky="ew")
 
-clear_btn = tk.Button(frame, text="Delete keys and signature", command=delete_everything, bg="#ffc680", fg="white", font=("Helvetica", 12))
+clear_btn = tk.Button(frame, text="Delete keys and signature", command=delete_everything, bg="#f44336", fg="white", font=("Helvetica", 12))
 clear_btn.grid(row=3, column=0, padx=10, pady=5, sticky="ew")
 
 root.mainloop()
